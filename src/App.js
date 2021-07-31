@@ -21,12 +21,12 @@ function App() {
 
   useEffect( () => {
       switch(filter){
-        case "active":{
+        case "active":
           setFilteredTodos(todos.filter( todo => !todo.done ));
-        }break;
-        case "completed":{
+        break;
+        case "completed":
           setFilteredTodos(todos.filter( todo => todo.done ));
-        }break;
+        break;
         default:{
           setFilteredTodos(todos);
         }
