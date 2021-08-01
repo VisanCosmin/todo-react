@@ -1,9 +1,12 @@
 import './App.css';
 import React, { useState , useEffect } from 'react';
 
+
+const initialState = JSON.parse(localStorage.getItem("todos")) === null ? [] : JSON.parse(localStorage.getItem("todos")) ;
+
 function App() {
   const [input,setInput] = useState("");
-  const [todos,setTodos] = useState([]);
+  const [todos,setTodos] = useState(initialState);
   const [filteredTodos,setFilteredTodos] = useState([]);
   const [filter,setFilter] = useState("all");
 
@@ -14,7 +17,6 @@ function App() {
                       , value : event.target.value 
                       };
       setTodos( todos.concat([newTodo]) );
-
       setInput("");
     }
   };
@@ -31,6 +33,9 @@ function App() {
           setFilteredTodos(todos);
         }
       }
+      localStorage.setItem("todos" , JSON.stringify(todos));
+
+
   } , [todos,filter] );
 
   const toggleTodo = (id) => (val) => {
